@@ -1,6 +1,6 @@
 {
   "name": "koa-load-middlewares",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Automatically load any koa middlewares in your package.json",
   "main": "index.js",
   "scripts": {
