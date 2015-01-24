@@ -82,4 +82,4 @@ koaLoadMiddlewares({
 [david-img]: https://img.shields.io/david/koa-modules/load-middlewares.svg?style=flat-square
 [david-url]: https://david-dm.org/koa-modules/load-middlewares
 [gulp-load-plugins]: https://github.com/jackfranklin/gulp-load-plugins
-[load-grunt-plugins]: https://github.com/sindresorhus/load-grunt-tasks
+[load-grunt-tasks]: https://github.com/sindresorhus/load-grunt-tasks
