@@ -2,7 +2,7 @@
 
 > Loads in any koa middlewares and attaches them to the global scope, or an object of your choice.
 
-Inspired by [gulp-load-plugins][]
+Inspired by [gulp-load-plugins][] & [load-grunt-tasks][]
 
 [![NPM version][npm-img]][npm-url]
 [![Build status][travis-img]][travis-url]
@@ -82,3 +82,4 @@ koaLoadMiddlewares({
 [david-img]: https://img.shields.io/david/koa-modules/load-middlewares.svg?style=flat-square
 [david-url]: https://david-dm.org/koa-modules/load-middlewares
 [gulp-load-plugins]: https://github.com/jackfranklin/gulp-load-plugins
+[load-grunt-plugins]: https://github.com/sindresorhus/load-grunt-tasks
