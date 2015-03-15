@@ -1,3 +1,9 @@
+/*!
+ * load-middlewares
+ * Copyright(c) 2015 Fangdun Cai
+ * MIT Licensed
+ */
+
 'use strict';
 
 var multimatch = require('multimatch');
@@ -16,6 +22,8 @@ function camelize(str) {
 
 module.exports = function(options) {
   var finalObject = {};
+  var configObject;
+  var requireFn;
   options = options || {};
 
   var pattern = arrayify(options.pattern || ['koa-*', 'koa.*']);
@@ -24,19 +32,29 @@ module.exports = function(options) {
   var replaceString = options.replaceString || /^koa(-|\.)/;
   var camelizePluginName = options.camelize === false ? false : true;
   var lazy = 'lazy' in options ? !!options.lazy : true;
-  var requireFn = options.requireFn || require;
   var renameObj = options.rename || {};
 
-  if (typeof config === 'string') {
-    config = require(config);
+  if(typeof options.requireFn === 'function') {
+    requireFn = options.requireFn;
+  } else if(typeof config === 'string') {
+    requireFn = function (name) {
+      // This searches up from the specified package.json file, making sure
+      // the config option behaves as expected.
+      var searchFor = path.join('node_modules', name);
+      return require(findup(searchFor, {cwd: path.dirname(config)}));
+    };
+  } else {
+    requireFn = require;
   }
 
-  if(!config) {
+  configObject = (typeof config === 'string') ? require(config) : config;
+
+  if(!configObject) {
     throw new Error('Could not find dependencies. Do you have a package.json file in your project?');
   }
 
   var names = scope.reduce(function(result, prop) {
-    return result.concat(Object.keys(config[prop] || {}));
+    return result.concat(Object.keys(configObject[prop] || {}));
   }, []);
 
   pattern.push('!koa-load-middlewares');
